@@ -13,15 +13,48 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    # Setup Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'  # Use your project's required Python version
+
+    # Install Python dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 black isort
+
+    # Run flake8 for Python linting
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    # Run black for Python formatting check
+    - name: Check formatting with black
+      run: |
+        black . --check
+
+    # Run isort for import order check
+    - name: Check import order with isort
+      run: |
+        isort . --check-only
+
+    # Set up Docker Buildx
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
+    # Log in to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    # Build and push Docker image
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
