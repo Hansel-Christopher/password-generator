@@ -38,9 +38,9 @@ jobs:
     - name: Checkout Flux CD config repository
       uses: actions/checkout@v4
       with:
-        repository: 'your-username/flux-cd-config-repo'  # Replace with your Flux CD config repo path
-        token: ${{ secrets.ACCESS_TOKEN }}
-        path: 'flux-config'
+        repository: Hansel-Christopher/password-generator
+        token: ${{ secrets.GH_PAT }}
+        path: flux-config
 
     - name: Update image tag in Helm values
       run: |
