@@ -19,29 +19,16 @@ jobs:
       with:
         python-version: '3.9'  # Use your project's required Python version
 
-    # Install Python dependencies
+    # Install pre-commit and other dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 black isort
+        pip install pre-commit
+        pre-commit install
 
-    # Run flake8 for Python linting
-    - name: Lint with flake8
-      run: |
-        # Stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # Exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-    # Run black for Python formatting check
-    - name: Check formatting with black
-      run: |
-        black . --check
-
-    # Run isort for import order check
-    - name: Check import order with isort
-      run: |
-        isort . --check-only
+    # Run pre-commit on all files
+    - name: Run pre-commit
+      run: pre-commit run --all-files
 
     # Set up Docker Buildx
     - name: Set up Docker Buildx
