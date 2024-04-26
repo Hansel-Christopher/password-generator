@@ -34,10 +34,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./flux-config
-
     steps:
     - name: Checkout Flux CD config repository
       uses: actions/checkout@v4
