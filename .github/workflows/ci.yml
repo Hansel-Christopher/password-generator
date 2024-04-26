@@ -32,7 +32,7 @@ jobs:
         tags: hanselchristopher001/password-generator:latest,hanselchristopher001/password-generator:${{ github.sha }}
 
   deploy:
-    needs: build-and-push-docker
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Flux CD config repository
