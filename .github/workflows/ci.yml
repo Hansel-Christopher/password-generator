@@ -38,7 +38,7 @@ jobs:
     - name: Checkout Flux CD config repository
       uses: actions/checkout@v4
       with:
-        repository: Hansel-Christopher/password-generator
+        repository: Hansel-Christopher/fluxcd-dev
         ref: main
         token: ${{ secrets.GH_PAT }}
         path: flux-config
