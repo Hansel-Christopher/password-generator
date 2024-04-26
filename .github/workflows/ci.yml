@@ -46,13 +46,14 @@ jobs:
       run: |
         cat apps/dev/password-generator/values.yaml
         sed -i "s/^  tag: .*/  tag: ${{ needs.build.outputs.sha }}/" apps/dev/password-generator/values.yaml
+        cat apps/dev/password-generator/values.yaml
 
     - name: Push changes to a new branch
       run: |
         cat apps/dev/password-generator/values.yaml
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
+        git add .
         git status
-        # git add .
         # git commit -m "Update image tag to ${{ needs.build.outputs.sha }}"
         # git push origin update-image-${{ needs.build.outputs.sha }}
