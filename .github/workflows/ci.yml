@@ -59,4 +59,4 @@ jobs:
         git config --global user.email "actions@github.com"
         git add .
         git commit -m "Update image tag to ${{ needs.build.outputs.sha }}"
-        git push origin update-image-${{ needs.build.outputs.sha }}
+        git push origin main
