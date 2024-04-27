@@ -23,13 +23,17 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Set outputs
+      id: vars
+      run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
         file: ./Dockerfile
         push: true
-        tags: hanselchristopher001/password-generator:latest,hanselchristopher001/password-generator:${{ github.sha }}
+        tags: hanselchristopher001/password-generator:latest,hanselchristopher001/password-generator:${{ steps.vars.outputs.sha_short }}
 
   deploy:
     needs: build
@@ -54,6 +58,5 @@ jobs:
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
         git add .
-        git status
-        # git commit -m "Update image tag to ${{ needs.build.outputs.sha }}"
-        # git push origin update-image-${{ needs.build.outputs.sha }}
+        git commit -m "Update image tag to ${{ needs.build.outputs.sha }}"
+        git push origin update-image-${{ needs.build.outputs.sha }}
