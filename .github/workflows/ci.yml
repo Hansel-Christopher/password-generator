@@ -33,7 +33,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: hanselchristopher001/password-generator:latest,hanselchristopher001/password-generator:${{ steps.vars.outputs.sha_short }}
+        tags: hanselchristopher001/password-generator:latest,hanselchristopher001/password-generator:${{ steps.vars.outputs.sha }}
 
   deploy:
     needs: build
