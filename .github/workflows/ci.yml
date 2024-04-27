@@ -31,9 +31,10 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
+        platforms: linux/amd64,linux/arm64
         file: ./Dockerfile
         push: true
-        tags: hanselchristopher001/password-generator:latest,hanselchristopher001/password-generator:${{ steps.vars.outputs.sha }}
+        tags: hanselchristopher001/password-generator:${{ steps.vars.outputs.sha }}
 
   deploy:
     needs: build
