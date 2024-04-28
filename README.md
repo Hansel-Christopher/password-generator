@@ -1,5 +1,3 @@
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hansel-Christopher/password-generator/:workflow)
-
 # password-generator
 REST API application written in Python using Flask
 
