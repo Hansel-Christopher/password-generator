@@ -1,5 +1,5 @@
 # Use a slim Python image for reduced size and attack surface
-FROM python:3.8-slim
+FROM python:3.10-slim
 
 # Set the working directory in the container to /app
 WORKDIR /app
