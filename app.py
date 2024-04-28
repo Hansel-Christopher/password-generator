@@ -14,7 +14,7 @@ def generate_password(length, special_chars, numbers):
 
 @app.route('/',methods=['GET'])
 def start():
-    return 'Welcome to Password Generator demo'
+    return 'Welcome to Password Generator demo 2'
 
 @app.route('/generate-passwords', methods=['POST'])
 def generate_passwords():
