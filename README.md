@@ -15,6 +15,9 @@ REST API application written in Python using Flask
 docker build -t password-generator:latest .
  ```
 
+- You can test the entire build and deploy workflow by simply raising a PR to change text in `app.py`. This triggers a GitHub Actions CI workflow that builds the `password-generator` app and pushes the image to DockerHub.
+- Once the PR is merged, the image tag is updated in the `fluxcd-dev` repo, which prompts FluxCD to roll out the changes to the Pods in the Kubernetes clusters managed by the repo.
+
 ### Running in local
 
 ```bash
