@@ -2,6 +2,7 @@
 REST API application written in Python using Flask
 
 ## Prerequisites
+- Python
 - Docker
 - pre-commit
 
