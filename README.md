@@ -42,7 +42,7 @@ curl --location 'http://localhost:8080/generate-passwords' \
 
 ## CI/CD with Github Actions
 
-- The workflow flow using is defined in `.github/workflows/ci.yml`.
+- The workflow being used is defined in `.github/workflows/ci.yml`.
 - The build job is triggered on every push or pull request to the `main` branch to checkout the code, build and push the image to `Dockerhub` registry
 - The deploy job is triggered on every push to the `main` branch to update the newly built image tag in the `Helm` values of the `FluxCD` repository
 
